@@ -17,6 +17,8 @@ module.exports = {
 		'import/prefer-default-export': ['off'],
 		'no-tabs': 'off',
 		'no-unused-vars': 'warn',
+		'object-shorthand': 'warn',
+		'no-use-before-define': 'warn',
 		'react/prop-types': 'off',
 		'react/jsx-indent': ['error', 'tab'],
 		'react/jsx-indent-props': ['error', 'tab'],
