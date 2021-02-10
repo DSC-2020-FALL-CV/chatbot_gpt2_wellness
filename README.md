@@ -1,6 +1,7 @@
 # chatbot_gpt2_wellness
 
-https://github.com/haven-jeon/KoGPT2-chatbot
-을 이용한 챗봇 만들기
+KoGPT-2 model을 활용한 chatbot 만들기
 
-123123123
+## Run our code in colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GoonLee/chatbot_gpt2_wellness/blob/main/KoGPT2_chatbot.ipynb)
