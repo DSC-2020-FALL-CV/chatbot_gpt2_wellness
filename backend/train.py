@@ -8,13 +8,13 @@ from kogpt2.utils import get_tokenizer
 from dataset import CharDataset
 
 # File path
-checkpoint_dir = './models'
+checkpoint_dir = 'models'
 checkpoint_filename = 'KoGPT2_checkpoint.pt'
-datafile_dir = './data'
+datafile_dir = 'data'
 datafile_filename = 'newChatbotData.csv'
 
-checkpoint_path = os.path.join(checkpoint_dir, checkpoint_filename)
-datafile_path = os.path.join(datafile_dir, datafile_filename)
+checkpoint_path = os.path.join(os.getcwd(),checkpoint_dir, checkpoint_filename)
+datafile_path = os.path.join(os.getcwd(),datafile_dir, datafile_filename)
 
 # Hyperparameters
 learning_rate = 3e-5
