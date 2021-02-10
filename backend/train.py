@@ -13,8 +13,8 @@ checkpoint_filename = 'KoGPT2_checkpoint.pt'
 datafile_dir = 'data'
 datafile_filename = 'newChatbotData.csv'
 
-checkpoint_path = os.path.join(os.getcwd(),checkpoint_dir, checkpoint_filename)
-datafile_path = os.path.join(os.getcwd(),datafile_dir, datafile_filename)
+checkpoint_path = os.path.join(os.getcwd(), checkpoint_dir, checkpoint_filename)
+datafile_path = os.path.join(os.getcwd(), datafile_dir, datafile_filename)
 
 # Hyperparameters
 learning_rate = 3e-5
@@ -33,34 +33,46 @@ try:
 except:
 	print("Unable to find checkpoint. If you saved checkpoint before, check checkpoint_path")
 
-# Dataset
-dataset = CharDataset(datafile_path, vocab, sentencepieceTokenizer)
-dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)
+try:
+	# Tokenizer
+	tok_path = get_tokenizer()
+	sentencepieceTokenizer = SentencepieceTokenizer(tok_path)
 
-# Tokenizer
-tok_path = get_tokenizer()
-sentencepieceTokenizer = SentencepieceTokenizer(tok_path)
-# Optimizer
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-# Train loop
-for epoch in range(epochs):
-	for data in dataloader:
-		optimizer.zero_grad()
-		data = torch.stack(data)
-		data = data.transpose(1,0)
+	# Dataset
+	dataset = CharDataset(datafile_path, vocab, sentencepieceTokenizer)
+	dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)
 
-		data = data.to(device)
-		moedl = model.to(device)
+	# Optimizer
+	optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-		outputs = model(data, labels=data)
-		loss, logits = outputs[:2]
-		loss = loss.to(device)
+	# Train loop
+	for epoch in range(epochs):
 
-		loss.backward()
+		for data in dataloader:
 
-		optimizer.step()
-	if epoch % 2 == 0:
-		print('epoch no.{0} loss = {1:.4f}'.format(epoch, loss))
-# Save
-model.to('cpu')
-torch.save(model.state_dict(), checkpoint_path)
+			optimizer.zero_grad()
+
+			data = torch.stack(data)
+			data = data.transpose(1,0)
+	
+			data = data.to(device)
+			moedl = model.to(device)
+	
+			outputs = model(data, labels=data)
+			loss, logits = outputs[:2]
+
+			loss = loss.to(device)
+	
+			loss.backward()
+	
+			optimizer.step()
+
+		if epoch % 2 == 0:
+			print('epoch no.{0} loss = {1:.4f}'.format(epoch, loss))
+
+	# Save
+	model.to('cpu')
+	torch.save(model.state_dict(), checkpoint_path)
+
+except:
+	print("Unable to find data files.")
