@@ -1,6 +1,6 @@
 import pandas as pd
 
-file="./Chatbot_data/웰니스_대화_스크립트_데이터셋.xlsx"
+file="./Chatbot_data/웰니스_대화_스크립트_데이터셋_수정.xlsx"
 
 wellnessData=pd.read_excel(file)
 
