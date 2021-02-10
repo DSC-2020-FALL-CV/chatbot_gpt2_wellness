@@ -33,33 +33,47 @@ try:
 except:
 	print("Unable to find checkpoint. If you saved checkpoint before, check checkpoint_path")
 
-# Tokenizer
-tok_path = get_tokenizer()
-sentencepieceTokenizer = SentencepieceTokenizer(tok_path)
-# Dataset
-dataset = CharDataset(datafile_path, vocab, sentencepieceTokenizer)
-dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)
-# Optimizer
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-# Train loop
-for epoch in range(epochs):
-	for data in dataloader:
-		optimizer.zero_grad()
-		data = torch.stack(data)
-		data = data.transpose(1,0)
+try:
+	# Tokenizer
+	tok_path = get_tokenizer()
+	sentencepieceTokenizer = SentencepieceTokenizer(tok_path)
 
-		data = data.to(device)
-		moedl = model.to(device)
+	# Dataset
+	dataset = CharDataset(datafile_path, vocab, sentencepieceTokenizer)
+	dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)
+	
 
-		outputs = model(data, labels=data)
-		loss, logits = outputs[:2]
-		loss = loss.to(device)
+	# Optimizer
+	optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-		loss.backward()
+	# Train loop
+	for epoch in range(epochs):
 
-		optimizer.step()
-	if epoch % 2 == 0:
-		print('epoch no.{0} loss = {1:.4f}'.format(epoch, loss))
-# Save
-model.to('cpu')
-torch.save(model.state_dict(), checkpoint_path)
+		for data in dataloader:
+
+			optimizer.zero_grad()
+
+			data = torch.stack(data)
+			data = data.transpose(1,0)
+	
+			data = data.to(device)
+			moedl = model.to(device)
+	
+			outputs = model(data, labels=data)
+			loss, logits = outputs[:2]
+
+			loss = loss.to(device)
+	
+			loss.backward()
+	
+			optimizer.step()
+
+		if epoch % 2 == 0:
+			print('epoch no.{0} loss = {1:.4f}'.format(epoch, loss))
+
+	# Save
+	model.to('cpu')
+	torch.save(model.state_dict(), checkpoint_path)
+
+except:
+	print("Unable to tokenize your data. Check your data file and make sure there are no blank cells in your data.")
