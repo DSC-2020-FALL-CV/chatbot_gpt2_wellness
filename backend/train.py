@@ -57,7 +57,7 @@ try:
 			data = data.transpose(1,0)
 	
 			data = data.to(device)
-			moedl = model.to(device)
+			model = model.to(device)
 	
 			outputs = model(data, labels=data)
 			loss, logits = outputs[:2]
