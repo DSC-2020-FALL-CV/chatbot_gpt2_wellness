@@ -28,6 +28,8 @@ const ChatRoom = ({ userName }) => {
 		);
 	};
 
+	
+
 	return (
 		<View style={styles.container}>
 			<FlatList

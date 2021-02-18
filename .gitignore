@@ -8,3 +8,4 @@ frontend/android/app/.classpath
 frontend/android/app/.project
 frontend/android/app/.settings/org.eclipse.buildship.core.prefs
 frontend/package-lock.json
+.vscode/settings.json
