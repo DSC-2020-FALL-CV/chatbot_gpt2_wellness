@@ -36,13 +36,12 @@ except:
 try:
 	# Tokenizer
 	tok_path = get_tokenizer()
-	sentencepieceTokenizer = SentencepieceTokenizer(tok_path)
+	sentencepieceTokenizer = SentencepieceTokenizer(tok_path, num_best=0, alpha=0)
 
 	# Dataset
 	dataset = CharDataset(datafile_path, vocab, sentencepieceTokenizer)
 	dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)
 	
-
 	# Optimizer
 	optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
