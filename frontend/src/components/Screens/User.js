@@ -39,21 +39,23 @@ const User = ({ userName, handleUserName, navigation }) => {
 	};
 
 	const getMessageFromApi = () => {
-		return fetch('http://10.0.2.2:5000/message', {method:'POST',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		  },
-		body : JSON.stringify({message : dummyVal})
-	})
-		.then((response) => response.json())
-		.then((json) => {
-			alert(json.message)
-			return json.message})
-		.catch((error) => {
-			alert(error.message);
-		});
-	}
+		return fetch('http://10.0.2.2:5000/message', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ message: dummyVal }),
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				alert(json.message);
+				return json.message;
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
+	};
 
 	return (
 		<SafeAreaView style={styles.wrap}>
@@ -72,7 +74,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 				</KeyboardAvoidingView>
 
 				<View style={styles.buttonView}>
-
 					<TouchableOpacity
 						style={styles.button}
 						onPress={getMessageFromApi}
@@ -82,7 +83,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 							전송
 						</Text>
 					</TouchableOpacity>
-
 					<TouchableOpacity
 						style={styles.button}
 						onPress={onSetUserNameButtonClick}
@@ -92,9 +92,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 							{setUserNamebuttonText}
 						</Text>
 					</TouchableOpacity>
-
-					
-
 					<TouchableOpacity
 						style={styles.button}
 						onPress={onSetExitButtonClick}
