@@ -20,9 +20,9 @@ const backgroundColor = '#003f5c';
 // ==========================================================
 
 // ========= [ constant variables ] =========================
-const title = '[ 위로 기계 ]';
+const title = '[ 제우스 ]';
 const userNameInputPlaceholder = '사용자 이름을 입력해주세요';
-const dummyVal = '제우스';
+const dummyVal = '위로 기계';
 const setUserNamebuttonText = '시작하기';
 const exit = '종료하기';
 // ==========================================================
@@ -72,17 +72,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 				</KeyboardAvoidingView>
 
 				<View style={styles.buttonView}>
-
-					<TouchableOpacity
-						style={styles.button}
-						onPress={getMessageFromApi}
-						disabled={isUserNameEmpty}
-					>
-						<Text style={styles.buttonText}>
-							전송
-						</Text>
-					</TouchableOpacity>
-
 					<TouchableOpacity
 						style={styles.button}
 						onPress={onSetUserNameButtonClick}
@@ -92,9 +81,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 							{setUserNamebuttonText}
 						</Text>
 					</TouchableOpacity>
-
-					
-
 					<TouchableOpacity
 						style={styles.button}
 						onPress={onSetExitButtonClick}
