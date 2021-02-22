@@ -10,3 +10,11 @@ frontend/android/app/.settings/org.eclipse.buildship.core.prefs
 frontend/package-lock.json
 .vscode/settings.json
 backend/models/KoGPT2_checkpoint.pt
+backend/__pycache__/app.cpython-38.pyc
+backend/__pycache__/chat.cpython-38.pyc
+backend/kogpt2/__pycache__/__init__.cpython-38.pyc
+backend/kogpt2/__pycache__/pytorch_kogpt2.cpython-38.pyc
+backend/kogpt2/__pycache__/utils.cpython-38.pyc
+backend/kogpt2/model/__pycache__/__init__.cpython-38.pyc
+backend/kogpt2/model/__pycache__/gpt.cpython-38.pyc
+backend/kogpt2/model/__pycache__/torch_gpt2.cpython-38.pyc

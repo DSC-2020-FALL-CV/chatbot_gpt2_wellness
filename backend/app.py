@@ -40,5 +40,6 @@ def hello_world():
 def getmessage():
     inputs = request.get_json()
     msg = inputs['message']
+    print(msg)
     a = response(msg, model, vocab, tokenizer)
     return jsonify(message=a)

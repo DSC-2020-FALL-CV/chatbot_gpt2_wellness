@@ -44,7 +44,7 @@ const User = ({ userName, handleUserName, navigation }) => {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		  },
-		body : JSON.stringify({message : dummyVal})
+		body : JSON.stringify({message : userName})
 	})
 		.then((response) => response.json())
 		.then((json) => {
