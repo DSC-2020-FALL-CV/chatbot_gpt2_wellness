@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
@@ -21,22 +22,24 @@ const App = () => {
 	};
 
 	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="User">
-				<Stack.Screen name="User" options={screenOption}>
-					{({ navigation }) => (
-						<User
-							userName={userName}
-							handleUserName={handleUserName}
-							navigation={navigation}
-						/>
-					)}
-				</Stack.Screen>
-				<Stack.Screen name="ChatRoom">
-					{() => <ChatRoom userName={userName} />}
-				</Stack.Screen>
-			</Stack.Navigator>
-		</NavigationContainer>
+		<PaperProvider>
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName="User">
+					<Stack.Screen name="User" options={screenOption}>
+						{({ navigation }) => (
+							<User
+								userName={userName}
+								handleUserName={handleUserName}
+								navigation={navigation}
+							/>
+						)}
+					</Stack.Screen>
+					<Stack.Screen name="ChatRoom">
+						{() => <ChatRoom userName={userName} />}
+					</Stack.Screen>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</PaperProvider>
 	);
 };
 
