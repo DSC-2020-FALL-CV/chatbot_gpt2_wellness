@@ -20,9 +20,9 @@ const backgroundColor = '#003f5c';
 // ==========================================================
 
 // ========= [ constant variables ] =========================
-const title = '[ 위로 기계 ]';
+const title = '[ 제우스 ]';
 const userNameInputPlaceholder = '사용자 이름을 입력해주세요';
-const dummyVal = '제우스';
+const dummyVal = '위로 기계';
 const setUserNamebuttonText = '시작하기';
 const exit = '종료하기';
 // ==========================================================
@@ -39,23 +39,21 @@ const User = ({ userName, handleUserName, navigation }) => {
 	};
 
 	const getMessageFromApi = () => {
-		return fetch('http://10.0.2.2:5000/message', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ message: dummyVal }),
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				alert(json.message);
-				return json.message;
-			})
-			.catch((error) => {
-				alert(error.message);
-			});
-	};
+		return fetch('http://10.0.2.2:5000/message', {method:'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		  },
+		body : JSON.stringify({message : userName})
+	})
+		.then((response) => response.json())
+		.then((json) => {
+			alert(json.message)
+			return json.message})
+		.catch((error) => {
+			alert(error.message);
+		});
+	}
 
 	return (
 		<SafeAreaView style={styles.wrap}>
@@ -74,15 +72,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 				</KeyboardAvoidingView>
 
 				<View style={styles.buttonView}>
-					<TouchableOpacity
-						style={styles.button}
-						onPress={getMessageFromApi}
-						disabled={isUserNameEmpty}
-					>
-						<Text style={styles.buttonText}>
-							전송
-						</Text>
-					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.button}
 						onPress={onSetUserNameButtonClick}

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 // ========= [ constant variables ] =========================
-const placeholder = '심심이에게 보낼 메시지를 입력하세요';
+const placeholder = '제우스에게 보낼 메시지를 입력하세요';
 // ==========================================================
 
 const MessageInput = ({ input, onChangeInput, onSubmiteButtonClick }) => {

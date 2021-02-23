@@ -15,12 +15,15 @@ const styles = StyleSheet.create({
 const ChatRoom = ({ userName }) => {
 	const listRef = useRef();
 	const USER_MESSAGE = { isUser: true, name: userName, message: '' };
-	const SIMSIMI_MESSAGE = { isUser: false, name: '심심이', message: '' };
+	const SIMSIMI_MESSAGE = { isUser: false, name: '제우스', message: '' };
 
 	const [userInput, setUserInput] = useState('');
 	const [messages, setMessages] = useState([]);
 
 	const getMessageFromApi = (input) => {
+		
+		//our server ip : http://118.67.130.93:5000/message
+		//http://10.0.2.2:5000/message
 		return fetch('http://10.0.2.2:5000/message', {
 			method: 'POST',
 			headers: {
