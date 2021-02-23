@@ -7,7 +7,7 @@ labelNum=3
 
 processedWellnessData=[]
 
-file="./backend/data/웰니스_대화_스크립트_데이터셋_수정.xlsx"
+file="./웰니스_대화_스크립트_데이터셋_수정.xlsx"
 wellnessData=pd.read_excel(file)
 
 label=wellnessData.iloc[0, 0]
@@ -30,7 +30,7 @@ processedDailyOfficeData=[]
 processedDailyOfficeTotalData=[]
 
 for i in range(1,3):
-    file = "./backend/data/일상_오피스_"+str(i)+".csv"
+    file = "./일상_오피스_"+str(i)+".csv"
     dailyData=pd.read_csv(file, encoding='cp949', engine='python')
     dailyData=dailyData.dropna(axis=0)
 
@@ -47,12 +47,12 @@ for i in range(1,3):
         processedDailyOfficeData.append(pd.DataFrame(data, columns=['Q','A','label'], index=[j]))
 
 processedDailyOfficeTotalData=pd.concat(processedDailyOfficeData, axis=0, ignore_index=True)
-
+'''
 #트위터 대화 데이터 정제
 
 processedTwitterData=[]
 
-file="./backend/data/트위터_대화시나리오DB_2000Set.xlsx"
+file="./트위터_대화시나리오DB_2000Set.xlsx"
 twitterData=pd.read_excel(file, usecols=[0,1], header=None)
 twitterData.columns=['유저', '챗봇']
 
@@ -64,12 +64,12 @@ for i in twitterData.index:
     processedTwitterData.append(pd.DataFrame(data, columns=['Q','A','label'], index=[i]))
 
 processedTwitterData=pd.concat(processedTwitterData, axis=0, ignore_index=True)
-
+'''
 
 #데이터 통합
-chatbotData=pd.read_csv("./backend/data/ChatbotData.csv",encoding='utf-8',engine='python')
+chatbotData=pd.read_csv("./ChatbotData.csv",encoding='utf-8',engine='python')
 
 totalData=chatbotData.append(processedWellnessData, sort=False)
 totalData=totalData.append(processedDailyOfficeTotalData, sort=False)
-totalData=totalData.append(processedTwitterData, sort=False)
-totalData.to_csv('./backend/data/newChatbotData.csv',encoding='cp949',index=False)
+#totalData=totalData.append(processedTwitterData, sort=False)
+totalData.to_csv('./newChatbotData.csv',encoding='cp949',index=False)
