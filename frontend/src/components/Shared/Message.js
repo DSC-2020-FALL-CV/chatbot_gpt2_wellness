@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 // ========= [ constant color ] =========================
-const backgroundColor = '#003f5c';
+const backgroundColor = '#fb5b5a';
 // ======================================================
 
 const styles = StyleSheet.create({
@@ -30,10 +30,13 @@ const Message = ({ isUser, name, message }) => {
 						borderRadius: 5,
 						backgroundColor: isUser
 							? backgroundColor
-							: 'whitesmoke',
+							: '#003f5c',
 					}}
 				>
-					<Text style={{ color: isUser ? 'white' : 'black' }}>
+					<Text 
+					//style={{ color: isUser ? 'white' : 'white' }}
+					style={{ color:  'white'}}
+					>
 						{message}
 					</Text>
 				</View>

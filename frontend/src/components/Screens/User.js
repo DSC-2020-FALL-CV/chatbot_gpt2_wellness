@@ -9,20 +9,22 @@ import {
 	BackHandler,
 	TouchableOpacity,
 	KeyboardAvoidingView,
+	Image
 } from 'react-native';
 import { checkIsStringEmpty } from '../function/FunctionaManger';
 
 // ========= [ constant color ] =========================
-const inputTextColor = '#465881';
+const inputTextColor = '#e6e3e3';
 const buttonColor = '#fb5b5a';
-const TextColor = 'white';
-const backgroundColor = '#003f5c';
+const TextColor = '#003f5c';
+const backgroundColor = 'white';
+const inputText = 'black';
 // ==========================================================
 
 // ========= [ constant variables ] =========================
 const title = '[ 제우스 ]';
 const userNameInputPlaceholder = '사용자 이름을 입력해주세요';
-const dummyVal = '위로 기계';
+const dummyVal = '김위로';
 const setUserNamebuttonText = '시작하기';
 const exit = '종료하기';
 // ==========================================================
@@ -38,28 +40,19 @@ const User = ({ userName, handleUserName, navigation }) => {
 		BackHandler.exitApp();
 	};
 
-	const getMessageFromApi = () => {
-		return fetch('http://10.0.2.2:5000/message', {method:'POST',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		  },
-		body : JSON.stringify({message : userName})
-	})
-		.then((response) => response.json())
-		.then((json) => {
-			alert(json.message)
-			return json.message})
-		.catch((error) => {
-			alert(error.message);
-		});
-	}
-
 	return (
 		<SafeAreaView style={styles.wrap}>
 			<View style={styles.container}>
+				
+			<KeyboardAvoidingView style={styles.inputView}>
 				<Text style={styles.title}>{title}</Text>
-				<KeyboardAvoidingView style={styles.inputView}>
+					
+
+					<Image 
+					style = {styles.iconImage}
+					source={require("../assets/zeus.png")}
+					/>
+
 					<Text style={styles.descriptionText}>
 						{userNameInputPlaceholder}
 					</Text>
@@ -69,8 +62,6 @@ const User = ({ userName, handleUserName, navigation }) => {
 						value={userName}
 						placeholder={dummyVal}
 					/>
-				</KeyboardAvoidingView>
-
 				<View style={styles.buttonView}>
 					<TouchableOpacity
 						style={styles.button}
@@ -88,6 +79,8 @@ const User = ({ userName, handleUserName, navigation }) => {
 						<Text style={styles.buttonText}>{exit}</Text>
 					</TouchableOpacity>
 				</View>
+
+				</KeyboardAvoidingView>		
 			</View>
 		</SafeAreaView>
 	);
@@ -109,37 +102,47 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 50,
 		color: TextColor,
-		marginBottom: 40,
+		marginBottom: 20,
 	},
 
 	inputView: {
-		width: '80%',
-		height: 50,
-		marginBottom: 20,
-		marginTop: 40,
+		width: '100%',
+		alignItems: 'center',
 		justifyContent: 'center',
 	},
 
 	inputText: {
+		width: '70%',
 		backgroundColor: inputTextColor,
 		borderRadius: 25,
 		fontWeight: 'bold',
 		height: 50,
 		fontSize: 20,
 		textAlign: 'center',
-		color: TextColor,
+		color: inputText,
 	},
+
+	iconImage: {
+		height: '40%',
+		width: '40%',
+		resizeMode : 'contain',
+		borderRadius: 20,
+	},
+
 	descriptionText: {
 		textAlign: 'center',
 		color: TextColor,
 		fontSize: 15,
 		marginBottom: 5,
+		
+		marginTop: 20
 	},
 
 	buttonView: {
-		width: '80%',
-		justifyContent: 'center',
-		marginTop: 40,
+		width: '70%',
+		justifyContent: 'space-between',
+		marginTop: 10,
+		flexDirection : 'row',
 	},
 	button: {
 		backgroundColor: buttonColor,
@@ -147,11 +150,14 @@ const styles = StyleSheet.create({
 		height: 50,
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginTop: 10,
+		padding : 20,
 	},
+
 	buttonText: {
 		fontWeight: 'bold',
 		color: 'white',
 		fontSize: 20,
 	},
+
+	
 });
