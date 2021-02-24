@@ -23,7 +23,7 @@ const ChatRoom = ({ userName }) => {
 	const getMessageFromApi = (input) => {
 		
 		//our server ip : http://118.67.130.93:5000/message
-		//http://10.0.2.2:5000/message
+		//local ip : http://10.0.2.2:5000/message
 		return fetch('http://10.0.2.2:5000/message', {
 			method: 'POST',
 			headers: {
